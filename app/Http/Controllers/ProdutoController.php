@@ -14,12 +14,16 @@ class ProdutoController extends Controller
      */
     public function index()
     {
+        //dd('CHEGOY!');
+        $produtos= Produto::orderBy('nome', 'ASC')->get();
+        dd($produtos);
+    }
         //$produtos = Produto::orderBy('nome', 'ASC')->get();
         //dd($produtos);
 
-        $produto = Produto::where('id', 1)->first();
-        dd($produto);
-    }
+       // $produto = Produto::where('id', 1)->first();
+        //dd($produto);
+    
 
     /**
      * Show the form for creating a new resource.
