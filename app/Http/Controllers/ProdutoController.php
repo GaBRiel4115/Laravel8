@@ -14,15 +14,35 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        //dd('CHEGOY!');
-        $produtos= Produto::orderBy('nome', 'ASC')->get();
-        dd($produtos);
-    }
-        //$produtos = Produto::orderBy('nome', 'ASC')->get();
+        //index / listar
+        //$produtos= Produto::orderBy('nome', 'ASC')
+                //->where('id',1)
+        //         ->get();
         //dd($produtos);
 
-       // $produto = Produto::where('id', 1)->first();
+        
+
+        //store / salvar
+        //$produto = new Produto;
+        //$produto->nome  = 'Monitor Ultrawide 36';
+        //$produto->valor = 3000;
+        //$produto->save();
+
+        //dd('Salvou!');
+
+         //show / exibir
+        //$produto = Produto::findOrFail(4);
         //dd($produto);
+
+        //Update / atualizar
+        $produto = Produto::findOrFail(4);
+        $produto->nome = 'Super Monitor UltraWide 36';
+        $produto->valor= 5000;
+        $produto->save();
+
+        dd('Atualizou!');
+    }
+       
     
 
     /**
