@@ -15,10 +15,10 @@ class ProdutoController extends Controller
     public function index()
     {
         //index / listar
-        //$produtos= Produto::orderBy('nome', 'ASC')
+        $produtos= Produto::orderBy('nome', 'ASC')
                 //->where('id',1)
-        //         ->get();
-        //dd($produtos);
+                 ->get();
+        dd($produtos);
 
         
 
@@ -35,12 +35,17 @@ class ProdutoController extends Controller
         //dd($produto);
 
         //Update / atualizar
-        $produto = Produto::findOrFail(4);
-        $produto->nome = 'Super Monitor UltraWide 36';
-        $produto->valor= 5000;
-        $produto->save();
+        //$produto = Produto::findOrFail(4);
+        //$produto->nome = 'Super Monitor UltraWide 36';
+        //$produto->valor= 5000;
+        //$produto->save();
 
-        dd('Atualizou!');
+        //dd('Atualizou!');
+
+        //destroy / excluir
+        $produto = Produto::findOrFail(4);
+        $produto->delete();
+        dd('Excluiu!');
     }
        
     
