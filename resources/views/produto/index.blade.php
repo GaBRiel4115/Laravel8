@@ -7,6 +7,7 @@
     <title>Trabalhando com view</title>
 </head> 
 <body>
+    <a href="{{ URL::to('produto/create')}}">CRIAR </a>
 <table class="table no-margin">
         <thead>
             <tr>

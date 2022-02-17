@@ -45,9 +45,9 @@ class ProdutoController extends Controller
         //dd('Atualizou!');
 
         //destroy / excluir
-        $produto = Produto::findOrFail(4);
-        $produto->delete();
-        dd('Excluiu!');
+        //$produto = Produto::findOrFail(4);
+        //$produto->delete();
+        //dd('Excluiu!');
     }
        
     
@@ -59,7 +59,7 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        //
+       return view('produto.create');
     }
 
     /**
