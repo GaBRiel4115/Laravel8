@@ -15,10 +15,12 @@ class ProdutoController extends Controller
     public function index()
     {
         //index / listar
-        $produtos= Produto::orderBy('nome', 'ASC')
-                //->where('id',1)
-                 ->get();
-        dd($produtos);
+        $produtos= Produto::orderBy('nome', 'ASC')->get();
+        return view('produto.index',['produtos' => $produtos]);
+        
+        //->where('id',1)
+                
+        //dd($produtos);
 
         
 
