@@ -7,14 +7,24 @@
     <title>CREATE</title>
 </head>
 <body>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     {!! Form::open(['url' => '/produto/create']) !!}
 
-    {{ Form::label('nome', 'Nome') }}
+    {{ Form::label('nome', 'Nome:') }}
     {{ Form::text('nome') }}
     <br>
-    {{ Form::label('valor', 'Valor') }}
+    {{ Form::label('valor', 'Valor:') }}
     {{ Form::text('valor') }}
     <br>
+    <hr>
     {{ Form::submit('Enviar') }}
 
     {!! Form::close() !!}

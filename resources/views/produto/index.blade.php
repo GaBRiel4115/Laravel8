@@ -7,7 +7,14 @@
     <title>Trabalhando com view</title>
 </head> 
 <body>
+    <hr>
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
     <a href="{{ URL::to('produto/create')}}">CRIAR </a>
+    <hr>
 <table class="table no-margin">
         <thead>
             <tr>

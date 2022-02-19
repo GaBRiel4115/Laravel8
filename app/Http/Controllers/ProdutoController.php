@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Http\Controllers;
@@ -70,7 +71,29 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'nome.required' => 'O campo :attribute é obrigatório.',
+            'nome.min'      => 'O :attribute precisa ter no minimo :min.',
+            'valor.required'=> 'O campo :attribute é obrigatório.',
+            'valor.numeric' => 'O campo :attribute precisa ser numérico!',
+        ];
+
+        $validated = $request->validate([
+            'nome' => 'required|min:5',
+            'valor'=> 'required|numeric',
+        ], $messages);
+
+        $produto = new Produto;
+        $produto->nome = $request->nome;
+        $produto->valor = $request->valor;
+        $produto->save();
+
+        return redirect('/produto')->with('status', 'Produto Criado com sucesso!');
+
+
+
+        //dd($request->all());
+
     }
 
     /**
