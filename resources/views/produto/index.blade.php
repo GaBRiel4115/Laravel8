@@ -33,8 +33,8 @@
             <td>{{ $value->id }}</td>
             <td>{{ $value->nome }}</td>
             <td>{{ $value->valor }}</td>
-            <td></td>
-            <td></td>
+            <td><a href ="{{ url('produto/' . $value->id)           }}"> Vizualizar </a></td>
+            <td><a href ="{{ url('produto/' . $value->id . '/edit') }}">Editar</a></td>
             <td></td>
         </tr>
     @endforeach

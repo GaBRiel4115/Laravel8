@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Produto;
 
+
+
 class ProdutoController extends Controller
 {
     /**
@@ -103,7 +105,8 @@ class ProdutoController extends Controller
      */
     public function show($id)
     {
-        //
+        $produto = Produto::findOrFail($id);
+        return view('produto.show',['produto' => $produto]);
     }
 
     /**
@@ -114,7 +117,8 @@ class ProdutoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $produto = Produto::findOrFail($id);
+        return view('produto.edit', ['produto' => $produto]);
     }
 
     /**
@@ -124,9 +128,28 @@ class ProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //dd($request->all());
+        $messages = [
+            'nome.required' => 'O campo :attribute é obrigatório.',
+            'nome.min'      => 'O :attribute precisa ter no minimo :min.',
+            'valor.required'=> 'O campo :attribute é obrigatório.',
+            'valor.numeric' => 'O campo :attribute precisa ser numérico!',
+        ];
+
+        $validated = $request->validate([
+            'nome' => 'required|min:5',
+            'valor'=> 'required|numeric',
+        ], $messages);
+
+        $produto = Produto::findOrFail($request->id);
+        $produto->nome = $request->nome;
+        $produto->valor = $request->valor;
+        $produto->save();
+
+        return redirect('/produto')->with('status', 'Produto Criado com sucesso!');
+
     }
 
     /**
