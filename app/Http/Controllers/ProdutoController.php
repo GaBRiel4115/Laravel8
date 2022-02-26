@@ -148,7 +148,7 @@ class ProdutoController extends Controller
         $produto->valor = $request->valor;
         $produto->save();
 
-        return redirect('/produto')->with('status', 'Produto Criado com sucesso!');
+        return redirect('/produto')->with('status', 'Produto atualizado com sucesso!');
 
     }
 
@@ -160,6 +160,9 @@ class ProdutoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $produto = Produto::findOrFail($id);
+        $produto-> delete();
+        
+        return redirect('/produto')->with('status', 'Produto excluido com sucesso!');
     }
 }

@@ -15,7 +15,7 @@ use App\Http\Controllers\ProdutoController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/produto');
 });
 
 Route::get('/produto', [ProdutoController::class, 'index'])->name('produto.index');
@@ -26,4 +26,6 @@ Route::post('/produto/create', [ProdutoController::class, 'store'])->name('produ
 Route::get('/produto/{id}', [ProdutoController::class, 'show'])->name('produto.show');
 
 Route::get('/produto/{id}/edit', [ProdutoController::class, 'edit'])->name('produto.edit');
-Route::put('/produto/edit', [ProdutoController::class, 'update'])->name('produto.uptade');
+Route::put('/produto/{id}', [ProdutoController::class, 'update'])->name('produto.uptade');
+
+Route::delete('/produto/{id}', [ProdutoController::class, 'destroy'])->name('produto.destroy');

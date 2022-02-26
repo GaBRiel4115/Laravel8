@@ -13,9 +13,16 @@
         {{ session('status') }}
     </div>
 @endif
+
+<script>
+    function ConfirmDelete() {
+        return confirm('Tem certeza que deseja excluir este registro?');
+    }
+</script>
+
     <a href="{{ URL::to('produto/create')}}">CRIAR </a>
     <hr>
-<table class="table no-margin">
+    <table class="table no-margin">
         <thead>
             <tr>
                 <th>id</th>
@@ -35,7 +42,12 @@
             <td>{{ $value->valor }}</td>
             <td><a href ="{{ url('produto/' . $value->id)           }}"> Vizualizar </a></td>
             <td><a href ="{{ url('produto/' . $value->id . '/edit') }}">Editar</a></td>
-            <td></td>
+            <td>
+                {{ Form::open(array('url' => 'produto/' . $value->id, 'onsubmit' => 'return ConfirmDelete()')) }}
+                {{ Form::hidden('_method', 'DELETE') }}
+                {{ Form::submit('Excluir', array('class' => 'btn btn-danger')) }}
+                {{ Form::close() }}
+            </td>
         </tr>
     @endforeach
 
