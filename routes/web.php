@@ -22,17 +22,20 @@ Route::put('/produto/{id}', [ProdutoController::class, 'update'])->name('produto
 Route::delete('/produto/{id}', [ProdutoController::class, 'destroy'])->name('produto.destroy');
 //------------------------------------ PRODUTO --------------------------------------------------
 
-Route::get('/', function(){
-    return view('/categorias');
-});
+
 
 
 
 
 //------------------------------------ CATEGORIA ------------------------------------------------
 
+Route::get('/', function(){
+    return view('/categorias');
+});
+Route::get('/categoria', [CategoriaController::class, 'index'])->name('categoria.index');
 
-
+Route::get('/categoria/create', [CategoriaController::class, 'create'])->name('categoria.create');
+Route::post('categoria/create', [CategoriaController::class, 'store'])->name('categoria.store');
 
 
 
