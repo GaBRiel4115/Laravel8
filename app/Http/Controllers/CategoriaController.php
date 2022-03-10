@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -13,7 +13,8 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $categoria = Categoria::Orderby('Nome', 'ASC')->get();
+        return view('categoria.index',['categorias'=>$categoria]);
     }
 
     /**
@@ -23,7 +24,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('categoria.create');
     }
 
     /**
@@ -34,7 +35,24 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'nome.required' => 'O campo :attribute é obrigatorio',
+            'nome.min'      => 'O :attribute precisa ter no mínimo :min',
+            
+        ];
+
+
+
+        $validated = $request->validate([
+            'nome' => 'required|min:5',
+            
+        ], $messages);
+    
+    $categoria = new Categoria;
+        $categoria-> nome =  $request -> nome;
+        $categoria->save();
+
+        return redirect('/categoria')->with('status', 'Produto atualizado com sucesso!');
     }
 
     /**
@@ -45,7 +63,8 @@ class CategoriaController extends Controller
      */
     public function show($id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+        return view('categoria.show',['categoria' => $categoria]);
     }
 
     /**
@@ -56,7 +75,8 @@ class CategoriaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+        return view('categoria.edit',['categoria' => $categoria]);
     }
 
     /**
@@ -68,7 +88,24 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+            'nome.required' => 'O campo :attribute é obrigatorio',
+            'nome.min'      => 'O :attribute precisa ter no mínimo :min',
+            
+        ];
+
+
+
+        $validated = $request->validate([
+            'nome' => 'required|min:5',
+            
+        ], $messages);
+    
+    $categoria = Categoria::findOrFail($id);
+        $categoria->nome =  $request -> nome;
+        $categoria->save();
+
+        return redirect('/categoria')->with('status', 'Produto editado com sucesso!');
     }
 
     /**
@@ -79,6 +116,8 @@ class CategoriaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+        $categoria->delete();
+        return redirect('/categoria')->with('status', 'Produto excluido com sucesso!');
     }
 }

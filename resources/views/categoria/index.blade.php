@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabalhando com view</title>
+</head> 
+<body>
+    <hr>
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+
+<script>
+    function ConfirmDelete() {
+        return confirm('Tem certeza que deseja excluir este registro?');
+    }
+</script>
+
+    <a href="{{ URL::to('categoria/create')}}">CRIAR </a>
+    <hr>
+    <table class="table no-margin">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>nome</th>
+                <th>valor</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+    @foreach ($categorias as $value)
+        <tr>
+            <td>{{ $value->id }}</td>
+            <td>{{ $value->nome }}</td>
+            <td>{{ $value->valor }}</td>
+            <td><a href ="{{ url('categoria/' . $value->id)           }}"> Vizualizar </a></td>
+            <td><a href ="{{ url('categoria/' . $value->id . '/edit') }}">Editar</a></td>
+            <td>
+                {{ Form::open(array('url' => 'categoria/' . $value->id, 'onsubmit' => 'return ConfirmDelete()')) }}
+                {{ Form::hidden('_method', 'DELETE') }}
+                {{ Form::submit('Excluir', array('class' => 'btn btn-danger')) }}
+                {{ Form::close() }}
+            </td>
+        </tr>
+    @endforeach
+
+        </tbody>
+    </table>
+</body>
+</html>
