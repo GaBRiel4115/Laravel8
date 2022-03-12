@@ -16,17 +16,32 @@ class ProdutoSeeder extends Seeder
     {
         Produto::create([
             'nome' => 'Teclado',
-            'valor' => 150
+            'valor' => 150,
+            'categoria_id' => 1,
         ]);
 
         Produto::create([
             'nome' => 'Mouse',
-            'valor' => 50
+            'valor' => 50,
+            'categoria_id' => 3,
         ]);
 
         Produto::create([
             'nome' => 'Gabinete',
-            'valor' => 200
+            'valor' => 200,
+            'categoria_id' => 5,
+        ]);
+
+        Produto::create([
+            'nome' => 'Monitor 144hz padrão',
+            'valor' => 200,
+            'categoria_id' => 2,
+        ]);
+
+        Produto::create([
+            'nome' => 'Oculos boladão',
+            'valor' => 200,
+            'categoria_id' => 4,
         ]);
     }
 }

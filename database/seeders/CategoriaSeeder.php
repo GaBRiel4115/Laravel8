@@ -29,5 +29,9 @@ class CategoriaSeeder extends Seeder
         Categoria::create([
             'nome' => 'Oculos'
         ]);
+
+        Categoria::create([
+            'nome' => 'Gabinete'
+        ]);
     }
 }
