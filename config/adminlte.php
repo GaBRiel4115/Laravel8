@@ -243,7 +243,8 @@ return [
         ],
         [
             'text' => 'Categorias',
-            'url'  => 'categoria',
+            'url'  => 'c
+            ',
             //'can'  => 'manage-blog',
         ],
         [

@@ -48,7 +48,7 @@ class CategoriaController extends Controller
             
         ], $messages);
     
-    $categoria = new Categoria;
+        $categoria = new Categoria;
         $categoria-> nome =  $request -> nome;
         $categoria->save();
 
